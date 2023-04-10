@@ -1,5 +1,7 @@
+using LibrarySystem.BL.Managers;
 using LibrarySystem.DAL.Context;
 using LibrarySystem.DAL.Models.Identity;
+using LibrarySystem.DAL.Repos.BookRepo;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -21,8 +23,17 @@ builder.Services.AddDbContext<LibraryContext>(options =>
 options.UseSqlServer(connectionString));
 #endregion
 
+#region Repos
+builder.Services.AddScoped<IBookRepo, BookRepo>();
+#endregion
+
+#region Managers
+builder.Services.AddScoped<IBookManager, BookManager>();
+#endregion
+
 //#region Identity Manager
-//builder.Services.AddIdentity<User, IdentityRole>(options => {
+//builder.Services.AddIdentity<User, IdentityRole>(options =>
+//{
 //    options.Password.RequiredUniqueChars = 3;
 //    options.Password.RequireNonAlphanumeric = false;
 //    options.Password.RequireLowercase = false;
@@ -31,7 +42,7 @@ options.UseSqlServer(connectionString));
 //    options.User.RequireUniqueEmail = true;
 //}
 //)
-//    .AddEntityFrameworkStores<ApplyIdentityContext>();
+//    .AddEntityFrameworkStores<LibraryContext>();
 //#endregion
 
 //#region Authentication
