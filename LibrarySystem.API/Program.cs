@@ -31,66 +31,66 @@ builder.Services.AddScoped<IBookRepo, BookRepo>();
 builder.Services.AddScoped<IBookManager, BookManager>();
 #endregion
 
-//#region Identity Manager
-//builder.Services.AddIdentity<User, IdentityRole>(options =>
-//{
-//    options.Password.RequiredUniqueChars = 3;
-//    options.Password.RequireNonAlphanumeric = false;
-//    options.Password.RequireLowercase = false;
-//    options.Password.RequireUppercase = false;
-//    options.Password.RequiredLength = 4;
-//    options.User.RequireUniqueEmail = true;
-//}
-//)
-//    .AddEntityFrameworkStores<LibraryContext>();
-//#endregion
+#region Identity Manager
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequiredUniqueChars = 3;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 4;
+    options.User.RequireUniqueEmail = true;
+}
+)
+    .AddEntityFrameworkStores<LibraryContext>();
+#endregion
 
-//#region Authentication
-////verify token
-//builder.Services.AddAuthentication(options =>
-//{
-//    options.DefaultAuthenticateScheme = "Cool";
-//    options.DefaultChallengeScheme = "Cool";
-//})
-//    .AddJwtBearer(
-//    "Cool", options =>
-//    {
-//        var secertKeyString = builder.Configuration.GetValue<string>("SecretKey") ?? "";
-//        var secretKeyInBytes = Encoding.ASCII.GetBytes(secertKeyString);
-//        var securityKey = new SymmetricSecurityKey(secretKeyInBytes);
+#region Authentication
+//verify token
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "Cool";
+    options.DefaultChallengeScheme = "Cool";
+})
+    .AddJwtBearer(
+    "Cool", options =>
+    {
+        var secertKeyString = builder.Configuration.GetValue<string>("SecretKey") ?? "";
+        var secretKeyInBytes = Encoding.ASCII.GetBytes(secertKeyString);
+        var securityKey = new SymmetricSecurityKey(secretKeyInBytes);
 
-//        options.TokenValidationParameters = new TokenValidationParameters()
-//        {
-//            IssuerSigningKey = securityKey,
-//            ValidateIssuer = false,
-//            ValidateAudience = false
-//        };
-//    }
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            IssuerSigningKey = securityKey,
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    }
 
-//    );
-//#endregion
+    );
+#endregion
 
-//#region Authorization
-//builder.Services.AddAuthorization(Options =>
-//{
-//    Options.AddPolicy("AllowAdminsOnly",
-//        builder => builder.RequireClaim(ClaimTypes.Role, "Admin"));
+#region Authorization
+builder.Services.AddAuthorization(Options =>
+{
+    Options.AddPolicy("AllowAdminsOnly",
+        builder => builder.RequireClaim(ClaimTypes.Role, "Admin"));
 
-//    Options.AddPolicy("AllowUsersOnly",
-//        builder => builder.RequireClaim(ClaimTypes.Role, "User"));
-//});
-//#endregion
+    Options.AddPolicy("AllowUsersOnly",
+        builder => builder.RequireClaim(ClaimTypes.Role, "User"));
+});
+#endregion
 
-//#region CorsPolicy
-//var AllowCorsPolicy = "AllowCorsPolicy";
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy(AllowCorsPolicy, builder =>
-//    {
-//        builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-//    });
-//});
-//#endregion
+#region CorsPolicy
+var AllowCorsPolicy = "AllowCorsPolicy";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(AllowCorsPolicy, builder =>
+    {
+        builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+    });
+});
+#endregion
 
 var app = builder.Build();
 

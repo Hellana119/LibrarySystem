@@ -78,32 +78,6 @@ namespace LibrarySystem.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Bio = "hiiii",
-                            Name = "Ahmed",
-                            Photo = "",
-                            Rating = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Bio = "Author",
-                            Name = "Lolo",
-                            Photo = "",
-                            Rating = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Bio = "hello",
-                            Name = "Baby & Baby",
-                            Photo = "",
-                            Rating = 0
-                        });
                 });
 
             modelBuilder.Entity("LibrarySystem.DAL.Models.Book", b =>
@@ -146,44 +120,6 @@ namespace LibrarySystem.DAL.Migrations
                     b.HasIndex("AuthorID");
 
                     b.ToTable("Books");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AuthorID = 0,
-                            AvailableNumer = 0,
-                            Description = "",
-                            Discount = 0m,
-                            Photo = "",
-                            Price = 0m,
-                            Rating = 0,
-                            Title = "Freddie"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AuthorID = 0,
-                            AvailableNumer = 0,
-                            Description = "",
-                            Discount = 0m,
-                            Photo = "",
-                            Price = 0m,
-                            Rating = 0,
-                            Title = "Jamie"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AuthorID = 0,
-                            AvailableNumer = 0,
-                            Description = "",
-                            Discount = 0m,
-                            Photo = "",
-                            Price = 0m,
-                            Rating = 0,
-                            Title = "Geoffrey"
-                        });
                 });
 
             modelBuilder.Entity("LibrarySystem.DAL.Models.Identity.User", b =>
@@ -262,7 +198,7 @@ namespace LibrarySystem.DAL.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("LibrarySystem.DAL.Models.Order", b =>
