@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.aspnetcore.authentication.jwtbearer" Version="7.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -18,6 +19,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibrarySystem.BL\LibrarySystem.BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.BL.Dtos;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,5 @@ namespace LibrarySystem.BL.Managers;
 public interface IBookManager
 {
     List<BookReadDto> GetAll();
-    void Add(BookAddDto book);
+    Task Add(BookAddDto book);
 }

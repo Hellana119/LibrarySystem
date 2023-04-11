@@ -10,10 +10,10 @@ namespace LibrarySystem.API.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IBookManager _bookManager;
-
         public BooksController(IBookManager bookManager)
         {
             _bookManager = bookManager;
+
         }
 
         [HttpGet]
@@ -23,10 +23,10 @@ namespace LibrarySystem.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(BookAddDto bookDto)
+        public async Task<ActionResult> Add([FromForm]BookAddDto bookDto)
         {
-            _bookManager.Add(bookDto);
-            return NoContent();
+           await _bookManager.Add(bookDto);
+            return Ok(bookDto);
         }
     }
 }

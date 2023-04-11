@@ -12,7 +12,7 @@ public class BookReadDto
     public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public int Rating { get; set; }
-    public string Photo { get; set; } = string.Empty;
+    public string ImagePath { get; set; } = string.Empty;
     public decimal Price { get; set; }
     public decimal Discount { get; set; }
 }

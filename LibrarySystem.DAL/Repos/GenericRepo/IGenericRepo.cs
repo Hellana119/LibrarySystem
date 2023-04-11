@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ public interface IGenericRepo<T> where T : class
 {
     List<T> GetAll();
     T? GetById(int id);
-    void Add(T entity);
+    Task Add(T entity);
     void Update(T entity);
     void Delete(T entity);
     int SaveChanges();

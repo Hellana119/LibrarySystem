@@ -1,4 +1,6 @@
-﻿namespace LibrarySystem.DAL.Models
+﻿using Microsoft.AspNetCore.Http;
+
+namespace LibrarySystem.DAL.Models
 {
     public class Book
     {
@@ -6,7 +8,7 @@
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; }= string.Empty;
         public int Rating { get; set; }
-        public string Photo { get; set; }= string.Empty;
+        public string ImagePath { get; set; } = string.Empty;
         public int AvailableNumer { get; set; }
         public decimal Price { get; set; }
         public decimal Discount { get; set; }

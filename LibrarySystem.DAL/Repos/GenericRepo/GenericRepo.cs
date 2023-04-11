@@ -24,9 +24,10 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
         return _context.Set<T>().Find(id);
     }
-    public void Add(T entity)
+    public async Task Add(T entity)
     {
         _context.Set<T>().Add(entity);
+         await _context.SaveChangesAsync();
     }
 
     public void Delete(T entity)
@@ -45,4 +46,6 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
         _context.Set<T>().Update(entity);
     }
+
+
 }
