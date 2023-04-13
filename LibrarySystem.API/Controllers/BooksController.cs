@@ -22,6 +22,15 @@ namespace LibrarySystem.API.Controllers
             return _bookManager.GetAll();
         }
 
+        [HttpGet]
+        [Route("{id:int}")]
+        public ActionResult<BookReadDto> GetById(int id)
+        {
+            var Book = _bookManager.GetById(id);
+            return Book;
+        }
+
+
         [HttpPost]
         public async Task<ActionResult> Add([FromForm]BookAddDto bookDto)
         {

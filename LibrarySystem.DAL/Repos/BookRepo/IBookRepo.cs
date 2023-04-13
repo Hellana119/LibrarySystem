@@ -10,4 +10,5 @@ namespace LibrarySystem.DAL.Repos.BookRepo;
 
 public interface IBookRepo: IGenericRepo<Book>
 {
+
 }

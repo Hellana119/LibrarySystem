@@ -11,5 +11,6 @@ namespace LibrarySystem.BL.Managers;
 public interface IBookManager
 {
     List<BookReadDto> GetAll();
+    BookReadDto? GetById(int id);
     Task Add(BookAddDto book);
 }

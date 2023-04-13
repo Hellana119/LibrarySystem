@@ -35,18 +35,36 @@ public class BookManager : IBookManager
                 Description= B.Description,
                 Rating= B.Rating,
                 ImagePath = B.ImagePath,
+                Price =B.Price,
+                Discount=B.Discount,
             }).ToList();
+    }
+
+    public BookReadDto? GetById(int id)
+    {
+        List<Book> BookFromDB = _bookRepo.GetAll();
+
+        return BookFromDB
+            .Select(B => new BookReadDto
+            {
+                Id = B.Id,
+                Title = B.Title,
+                Description = B.Description,
+                Rating = B.Rating,
+                ImagePath = B.ImagePath,
+                Price = B.Price,
+                Discount = B.Discount
+            })
+            .FirstOrDefault(c => c.Id == id);
     }
 
     public async Task Add([FromForm]BookAddDto bookDto)
     {
         var imagePath = Path.Combine(_env.WebRootPath, "images", bookDto.Image.FileName);
-        //var imagePath = $"~/images/{Guid.NewGuid()}{Path.GetExtension(bookDto.ImagePath)}";
 
         var stream = new FileStream(imagePath, FileMode.Append);
         bookDto.Image.CopyTo(stream);
         
-
   
         var Book = new Book
         {
